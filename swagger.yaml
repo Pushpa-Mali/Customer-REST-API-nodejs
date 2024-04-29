@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: Customer Management API
+  description: API for managing customers
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User registered successfully
+        '500':
+          description: Error registering user
+  /login:
+    post:
+      summary: Log in user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid username or password
+        '500':
+          description: Error logging in
+  /customers:
+    get:
+      summary: Get list of customers
+      parameters:
+        - name: name
+          in: query
+          description: Filter by customer name
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: Filter by customer email
+          schema:
+            type: string
+        - name: sortBy
+          in: query
+          description: Sort by name or email
+          schema:
+            type: string
+        - name: sortOrder
+          in: query
+          description: Sort order (asc or desc)
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      type: object
+    post:
+      summary: Add a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '201':
+          description: Customer added successfully
+        '500':
+          description: Error adding customer
+  /customers/{id}:
+    get:
+      summary: Get customer details by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Customer ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Update customer information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Customer ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Customer information updated successfully
+        '404':
+          description: Customer not found
+        '500':
+          description: Error updating customer information
+    delete:
+      summary: Delete a customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Customer ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Customer deleted successfully
+        '404':
+          description: Customer not found
+        '500':
+          description: Error deleting customer

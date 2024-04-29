@@ -1,0 +1,7 @@
+# Node.js and Express
+node_modules/
+npm-debug.log
+
+# IDEs and editors
+.vscode/
+.idea/
