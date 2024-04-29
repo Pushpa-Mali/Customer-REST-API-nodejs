@@ -1,3 +1,25 @@
+table query
+
+customer table query
+
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+user table query
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+postman screenshots
+
+
 ![image](https://github.com/Pushpa-Mali/Customer-REST-API-nodejs/assets/94977416/58b44160-3375-41d5-8705-1038b540588a)
 
 ![image](https://github.com/Pushpa-Mali/Customer-REST-API-nodejs/assets/94977416/bdf7139c-3c7c-46c5-a87d-ac18e5fc4f2e)
